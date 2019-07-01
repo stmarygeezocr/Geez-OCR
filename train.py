@@ -20,7 +20,7 @@ let_num = {}
 lets = lbl_csv.next()
 i = 0
 for l in lets:
-	let_num[l] = i
+    let_num[l] = i
 	i += 1
 
 tr_csv = csv.reader(open(tr_file, "r"))
@@ -34,11 +34,13 @@ for i in tr_csv:
 tr_x = np.transpose(tr_x)
 tr_x = np.array(tr_x, np.uint8)
 
-clf = MLPClassifier(solver='sgd', alpha=1e-5, hidden_layer_sizes=(100, 100), random_state=1)
+clf = MLPClassifier(activation='logistic', solver='sgd', alpha=1e-5,
+hidden_layer_sizes=(864, 570), random_state=1, early_stopping=True,
+validation_fraction=0.1)
 clf.fit(tr_x.tolist(), tr_y)
 
 import pickle
-s = pickle.dump(clf, open("model1.dump", "w"))
+s = pickle.dump(clf, open("model6.dump", "w"))
 
 ts_y = [let_num[i] for i in ts_csv.next()]
 ts_x = []

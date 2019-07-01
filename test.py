@@ -14,6 +14,7 @@ lbl_csv = csv.reader(open("label.csv", "r"))
 let_num = {}
 for l in lbl_csv:
    let_num[l[0].replace(" ", "")] = int(l[1])
+   print l[0].replace(" ", "") + "," + l[1]
 
 
 def get_let_name(code):
@@ -67,6 +68,6 @@ for let, resv in res.iteritems():
 print "accuracy:", float(TP)/len(ts_y) * 100.0
 
 # sklearn metrics
-#print "** sklearn metrics **"
-#print "TP: ", TP, "  LEN_Y: ", len(ts_y)
-#print "Accuracy: ", accuracy_score(ts_y, pred_y)
+print "** sklearn metrics **"
+print "TP: ", TP, "  LEN_Y: ", len(ts_y)
+print "Accuracy: ", accuracy_score(ts_y, pred_y)
